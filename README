@@ -6,6 +6,9 @@ $ sudo make install
 If compilation does not work or you want to customize stuff (like disable
 Xinerama support), edit config.mk first.
 
+Note: You'll probably need gnu make (since bsd make does not support the $^
+used in src/Makefile)
+
 What is feh?
 
 http://linuxbrit.co.uk/feh/
