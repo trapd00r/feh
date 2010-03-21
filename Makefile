@@ -1,7 +1,4 @@
-prefix ?= /usr/local
-
-man_dir ?= $(prefix)/share/man
-bin_dir ?= $(prefix)/bin
+include config.mk
 
 default:
 	@$(MAKE) -C src prefix=$(prefix)
