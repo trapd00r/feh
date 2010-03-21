@@ -1,11 +1,12 @@
 # Change the prefix, if you want
 prefix = /usr/local
 
-# Directory for manuals
+# Directories for manuals, executables, docs, data, etc.
 man_dir = $(prefix)/share/man
-
-# Directory for executables
 bin_dir = $(prefix)/bin
+doc_dir = $(prefix)/share/doc
+image_dir = $(prefix)/share/feh/images
+font_dir = $(prefix)/share/feh/fonts
 
 # debug = 1 if you want debug mode
 debug =

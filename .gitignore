@@ -1,7 +1,2 @@
 /src/*.o
-/config.log
-/config.status
-/src/config.h
 /src/feh
-/src/stamp-h
-/configure.lineno
