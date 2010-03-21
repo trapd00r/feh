@@ -1,5 +1,4 @@
 /src/*.o
-Makefile
 /config.log
 /config.status
 /src/config.h
