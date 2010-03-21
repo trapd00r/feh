@@ -1,4 +1,8 @@
-# Change the prefix, if you want
+# Package name and version
+package = feh
+version = 1.4.1
+
+# Prefix for all installed files
 prefix = /usr/local
 
 # Directories for manuals, executables, docs, data, etc.
@@ -27,12 +31,6 @@ extra_libs =
 dmalloc = -DWITH_DMALLOC
 # Enable this to use dmalloc
 #CFLAGS += $(dmalloc)
-
-# You can change the package name, if you want...
-package = feh
-
-# ... or the version
-version = 1.4.1
 
 
 # You should not need to change anything below this line.
