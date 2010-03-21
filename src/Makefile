@@ -1,9 +1,11 @@
 include ../config.mk
 
-feh: collage.o events.o feh_png.o filelist.o getopt.o getopt1.o imlib.o
-feh: index.o ipc.o keyevents.o list.o main.o md5.o menu.o multiwindow.o
-feh: options.o slideshow.o support.o thumbnail.o timers.o utils.o winwidget.o
-	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
+OBJECTS = collage.o events.o feh_png.o filelist.o getopt.o getopt1.o imlib.o \
+	index.o ipc.o keyevents.o list.o main.o md5.o menu.o multiwindow.o \
+	options.o slideshow.o support.o thumbnail.o timers.o utils.o winwidget.o
+
+feh: $(OBJECTS)
+	$(CC) $(CFLAGS) -o $@ $(OBJECTS) $(LDFLAGS)
 
 
 
