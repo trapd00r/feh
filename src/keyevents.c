@@ -77,16 +77,16 @@ void feh_event_handle_keypress(XEvent * ev)
 		case XK_Escape:
 			feh_menu_hide(menu_root, True);
 			break;
-		case XK_Left:
+    case XK_h:
 			feh_menu_select_parent(selected_menu);
 			break;
-		case XK_Down:
+    case XK_j:
 			feh_menu_select_next(selected_menu, selected_item);
 			break;
-		case XK_Up:
+		case XK_k:
 			feh_menu_select_prev(selected_menu, selected_item);
 			break;
-		case XK_Right:
+		case XK_l:
 			feh_menu_select_submenu(selected_menu);
 			break;
 		case XK_Return:
@@ -155,28 +155,28 @@ void feh_event_handle_keypress(XEvent * ev)
 	}
 
 	switch (keysym) {
-	case XK_Left:
+	case XK_h:
 		if (opt.slideshow)
 			slideshow_change_image(winwid, SLIDE_PREV);
 		break;
-	case XK_Right:
+	case XK_l:
 		if (opt.slideshow)
 			slideshow_change_image(winwid, SLIDE_NEXT);
 		break;
-	case XK_Page_Up:
-	case XK_KP_Page_Up:
+	case XK_k:
+	case XK_K:
 		if (opt.slideshow)
 			slideshow_change_image(winwid, SLIDE_JUMP_BACK);
 		break;
 	case XK_Escape:
 		winwidget_destroy_all();
 		break;
-	case XK_Page_Down:
-	case XK_KP_Page_Down:
+	case XK_j:
+	case XK_J:
 		if (opt.slideshow)
 			slideshow_change_image(winwid, SLIDE_JUMP_FWD);
 		break;
-	case XK_Delete:
+	case XK_d:
 		/* Holding ctrl gets you a filesystem deletion and removal from the * 
 		   filelist. Just DEL gets you filelist removal only. */
 		if (kev->state & ControlMask) {
@@ -257,13 +257,13 @@ void feh_event_handle_keypress(XEvent * ev)
 		winwid->im_y = winwid->im_y + 10;
 		winwidget_render_image(winwid, 0, 0);
 		break;
-	case XK_KP_Add:
+	case XK_Z:
 		/* erroneously recognized as '+' in the *kbuf switch. Work around this. */
 		len = 0;
 		winwid->zoom = winwid->zoom * 1.25;
 		winwidget_render_image(winwid, 0, 0);
 		break;
-	case XK_KP_Subtract:
+	case XK_z:
 		len = 0;
 		winwid->zoom = winwid->zoom * 0.75;
 		winwidget_render_image(winwid, 0, 0);
