@@ -29,6 +29,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include "winwidget.h"
 #include "options.h"
 
+#define XK_Dollar         0x24        /* $ */
+#define XK_Circumflex     0xfe52      /* ^ */
+
 void feh_event_invoke_action(winwidget winwid, char *action)
 {
 	D(4, ("action is '%s'\n", action));
@@ -189,13 +192,12 @@ void feh_event_handle_keypress(XEvent * ev)
 			feh_filelist_image_remove(winwid, 0);
 		}
 		break;
-	case XK_Home:
+	case XK_Circumflex:
 	case XK_KP_Home:
 		if (opt.slideshow)
 			slideshow_change_image(winwid, SLIDE_FIRST);
 		break;
-	case XK_End:
-	case XK_KP_End:
+	case XK_Dollar:
 		if (opt.slideshow)
 			slideshow_change_image(winwid, SLIDE_LAST);
 		break;
