@@ -212,20 +212,7 @@ void winwidget_create_window(winwidget ret, int w, int h)
 	    KeyPressMask | KeyReleaseMask | ButtonMotionMask | ExposureMask
 	    | FocusChangeMask | PropertyChangeMask | VisibilityChangeMask;
 
-	if (opt.borderless || ret->full_screen) {
-		prop = XInternAtom(disp, "_MOTIF_WM_HINTS", True);
-		if (prop == None) {
-			weprintf
-			    ("Window Manager does not support MWM hints. "
-			     "To get a borderless window I have to bypass your wm.");
-			attr.override_redirect = True;
-			mwmhints.flags = 0;
-		} else {
-			mwmhints.flags = MWM_HINTS_DECORATIONS;
-			mwmhints.decorations = 0;
-		}
-	} else
-		mwmhints.flags = 0;
+	mwmhints.flags = 0;
 
 	ret->win =
 	    XCreateWindow(disp, DefaultRootWindow(disp), x, y, w, h, 0,
@@ -237,22 +224,6 @@ void winwidget_create_window(winwidget ret, int w, int h)
 		XChangeProperty(disp, ret->win, prop, prop, 32,
 				PropModeReplace, (unsigned char *) &mwmhints, PROP_MWM_HINTS_ELEMENTS);
 	}
-	if (ret->full_screen) {
-		Atom prop_fs = XInternAtom(disp, "_NET_WM_STATE_FULLSCREEN", False);
-		Atom prop_state = XInternAtom(disp, "_NET_WM_STATE", False);
-
-		memset(&ev, 0, sizeof(ev));
-		ev.xclient.type = ClientMessage;
-		ev.xclient.message_type = prop_state;
-		ev.xclient.display = disp;
-		ev.xclient.window = ret->win;
-		ev.xclient.format = 32;
-		ev.xclient.data.l[0] = (ret->full_screen ? 1 : 0);
-		ev.xclient.data.l[1] = prop_fs;
-
-		XChangeProperty(disp, ret->win, prop_state, XA_ATOM, 32,
-				PropModeReplace, (unsigned char *) &prop_fs, 1);
-	}
 
 	XSetWMProtocols(disp, ret->win, &wmDeleteWindow, 1);
 	winwidget_update_title(ret);
@@ -262,16 +233,6 @@ void winwidget_create_window(winwidget ret, int w, int h)
 	XSetClassHint(disp, ret->win, xch);
 	XFree(xch);
 
-	/* Size hints */
-	if (ret->full_screen || opt.geom_flags) {
-		XSizeHints xsz;
-
-		xsz.flags = USPosition;
-		xsz.x = x;
-		xsz.y = y;
-		XSetWMNormalHints(disp, ret->win, &xsz);
-		XMoveWindow(disp, ret->win, x, y);
-	}
 	if (opt.hide_pointer)
 		winwidget_set_pointer(ret, 0);
 
