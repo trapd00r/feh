@@ -192,6 +192,7 @@ void feh_event_handle_keypress(XEvent * ev)
 		}
 		break;
 	case XK_Circumflex:
+  case XK_Dead_Circumflex:
 		if (opt.slideshow)
 			slideshow_change_image(winwid, SLIDE_FIRST);
 		break;
