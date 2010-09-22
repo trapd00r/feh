@@ -270,8 +270,8 @@ Usage : " PACKAGE " [OPTIONS]... FILES...
  SLIDESHOW KEYS
  The default mode for viewing mulitple images is Slideshow mode
  When viewing a slideshow, the following keys may be used:
- p, P, <BACKSPACE>, <LEFT>  Goto previous slide
- n, N, <SPACE>, <RIGHT>     Goto next slide
+ h,                         Goto previous slide
+ l,                         Goto next slide
  r, R                       Reload image (good for webcams)
  v, V                       Toggle fullscreen
  m, M                       Show popup menu
@@ -289,13 +289,13 @@ Usage : " PACKAGE " [OPTIONS]... FILES...
  s, S                       Save current image to unique filename
  f, F                       Save current filelist to unique filename
  <, >                       In place editing, rotate 90 degrees right/left
- <HOME>                     Goto first slide
- <END>                      Goto last slide
+ ^                          Goto first slide
+ $                          Goto last slide
  <ESCAPE>                   Quit the slideshow
  +, =                       Increase reload delay
  -, _                       Decrease reload delay
- <DELETE>                   Remove the currently viewed file from the filelist
- <CTRL+DELETE>              Delete the currently viewed file and remove it
+ d                          Remove the currently viewed file from the filelist
+ <CTRL+d>                   Delete the currently viewed file and remove it
                             from the filelist
  x, X                       Close current window
  q, Q                       Quit the slideshow
@@ -304,8 +304,8 @@ Usage : " PACKAGE " [OPTIONS]... FILES...
  <KEYPAD UP>                Move the image up
  <KEYPAD DOWN>              Move the image down
  <KEYPAD BEGIN>             Antialias the image
- <KEYPAD +>                 Zoom in
- <KEYPAD ->                 Zoom out
+ z                          Zoom in
+ Z                          Zoom out
  <KEYPAD *>                 Zoom to 100%
  <KEYPAD />                 Zoom to fit the window
  <ENTER>,0                  Run action specified by --action option

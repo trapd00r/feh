@@ -29,8 +29,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include "winwidget.h"
 #include "options.h"
 
-#define XK_Dollar         0x24        /* $ */
-#define XK_Circumflex     0xfe52      /* ^ */
+#define XK_Dollar              0x24        /* $ */
+#define XK_Dead_Circumflex     0xfe52      /* shift+^+<ANY KEY> */
+#define XK_Circumflex          0x5e        /* shift+^ */
 
 void feh_event_invoke_action(winwidget winwid, char *action)
 {
@@ -166,22 +167,20 @@ void feh_event_handle_keypress(XEvent * ev)
 		if (opt.slideshow)
 			slideshow_change_image(winwid, SLIDE_NEXT);
 		break;
-	case XK_k:
-	case XK_K:
+	case XK_H:
 		if (opt.slideshow)
 			slideshow_change_image(winwid, SLIDE_JUMP_BACK);
 		break;
 	case XK_Escape:
 		winwidget_destroy_all();
 		break;
-	case XK_j:
-	case XK_J:
+	case XK_L:
 		if (opt.slideshow)
 			slideshow_change_image(winwid, SLIDE_JUMP_FWD);
 		break;
 	case XK_d:
 		/* Holding ctrl gets you a filesystem deletion and removal from the * 
-		   filelist. Just DEL gets you filelist removal only. */
+		   filelist. Just 'd' gets you filelist removal only. */
 		if (kev->state & ControlMask) {
 			if (winwid->type == WIN_TYPE_THUMBNAIL_VIEWER)
 				feh_thumbnail_mark_removed(FEH_FILE(winwid->file->data), 1);
@@ -193,7 +192,6 @@ void feh_event_handle_keypress(XEvent * ev)
 		}
 		break;
 	case XK_Circumflex:
-	case XK_KP_Home:
 		if (opt.slideshow)
 			slideshow_change_image(winwid, SLIDE_FIRST);
 		break;
@@ -260,14 +258,13 @@ void feh_event_handle_keypress(XEvent * ev)
 		winwidget_render_image(winwid, 0, 0);
 		break;
 	case XK_Z:
-		/* erroneously recognized as '+' in the *kbuf switch. Work around this. */
 		len = 0;
-		winwid->zoom = winwid->zoom * 1.25;
+		winwid->zoom = winwid->zoom * 1.50;
 		winwidget_render_image(winwid, 0, 0);
 		break;
 	case XK_z:
 		len = 0;
-		winwid->zoom = winwid->zoom * 0.75;
+		winwid->zoom = winwid->zoom * 0.50;
 		winwidget_render_image(winwid, 0, 0);
 		break;
 	case XK_KP_Multiply:
